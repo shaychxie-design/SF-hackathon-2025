@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHYP AI Intake - Get the Help You Need</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .phone-container {
+            width: 100%;
+            max-width: 420px;
+            height: 90vh;
+            max-height: 844px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        /* Welcome Screen Styles */
+        .welcome-screen {
+            flex: 1;
+            overflow-y: auto;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .welcome-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 24px 32px;
+            text-align: center;
+        }
+
+        .welcome-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .welcome-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .welcome-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .welcome-content {
+            padding: 24px;
+            flex: 1;
+        }
+
+        .what-we-do-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-card {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            border: 2px solid #e8ebff;
+            transition: all 0.2s;
+        }
+
+        .benefit-card:hover {
+            border-color: #667eea;
+            transform: translateX(4px);
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .benefit-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .journey-preview {
+            margin-bottom: 32px;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .step-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .trust-indicators {
+            background: #f0f4ff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .trust-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .trust-icon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .trust-text {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .start-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .start-button:active {
+            transform: translateY(0);
+        }
+
+        .time-estimate {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Progress Header */
+        .progress-header {
+            background: white;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: none;
+        }
+
+        .progress-header.show {
+            display: block;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            right: -50%;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .progress-step:last-child::before {
+            display: none;
+        }
+
+        .progress-step.completed::before {
+            background: #4CAF50;
+        }
+
+        .progress-step-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #999;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .progress-step-circle {
+            border-color: #667eea;
+            color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .progress-step.completed .progress-step-circle {
+            border-color: #4CAF50;
+            background: #4CAF50;
+            color: white;
+        }
+
+        .progress-step-label {
+            font-size: 10px;
+            color: #999;
+            margin-top: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .progress-step.active .progress-step-label {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .progress-step.completed .progress-step-label {
+            color: #4CAF50;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        /* Chat Styles */
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f5f5f5;
+            display: none;
+        }
+
+        .chat-container.show {
+            display: block;
+        }
+
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message.ai {
+            flex-direction: row;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+        
+        .avatar.ai {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .avatar.user {
+            background: #4CAF50;
+        }
+        
+        .message-content {
+            max-width: 75%;
+        }
+        
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            font-size: 15px;
+            white-space: pre-line;
+        }
+        
+        .message.ai .message-bubble {
+            background: white;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .message.user .message-bubble {
+            background: #667eea;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .button-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .option-button {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 14px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            text-align: left;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            font-weight: 500;
+        }
+        
+        .option-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .option-button.tell-more {
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            color: #666;
+            font-size: 14px;
+            justify-content: center;
+            margin-top: 4px;
+        }
+
+        .option-button.tell-more:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            border-color: #667eea;
+        }
+
+        .quick-answer-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .quick-answer-button {
+            background: white;
+            border: 2px solid #e0e0e0;
+            color: #333;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.2s;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .quick-answer-button:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            color: #667eea;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* Gentle Progress Acknowledgment */
+        .progress-acknowledgment {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ebff 100%);
+            border-left: 4px solid #667eea;
+            padding: 12px 16px;
+            margin-top: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .input-container {
+            padding: 16px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: none;
+        }
+
+        .input-container.show {
+            display: block;
+        }
+        
+        .input-mode-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            justify-content: center;
+        }
+        
+        .mode-button {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .mode-button.active {
+            border-color: #667eea;
+            background: #f0f4ff;
+            color: #667eea;
+        }
+
+        .smart-autocomplete {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            margin-top: 8px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .smart-autocomplete.show {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .autocomplete-item:hover {
+            background: #f0f4ff;
+        }
+
+        .autocomplete-icon {
+            font-size: 16px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .context-note {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            margin-top: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .context-note-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .smart-summary {
+            background: #f8f9ff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .summary-item {
+            font-size: 14px;
+            color: #333;
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .empathy-note {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="status-bar">
+            <span id="timeDisplay">11:15 PM</span>
+            <span>📶 🔋 85%</span>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-hero">
+                <div class="welcome-icon">🏠</div>
+                <div class="welcome-title">Find the Help You Need Tonight</div>
+                <div class="welcome-subtitle">Get connected to housing, food, and support in minutes</div>
+            </div>
+
+            <div class="welcome-content">
+                <div class="what-we-do-section">
+                    <div class="section-title">
+                        <span>💙</span>
+                        <span>What We'll Do Together</span>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Find You Resources Tonight</div>
+                            <div class="benefit-description">Real shelters with available beds, food programs, and more</div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💬</div>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Simple Conversation</div>
+                            <div class="benefit-description">Answer at your own pace - skip anything you're not comfortable with</div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📋</div>
+                        <div class="benefit-text">
+                            <div class="benefit-title">No Repeating Yourself</div>
+                            <div class="benefit-description">Share once, use everywhere - we'll fill out the forms for you</div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-text">
+                            <div class="benefit-title">You Control Your Info</div>
+                            <div class="benefit-description">See exactly what's shared and who can see it</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-preview">
+                    <div class="section-title">
+                        <span>🗺️</span>
+                        <span>Your Journey (5 Steps)</span>
+                    </div>
+                    
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-info">
+                                <div class="step-name">Safety Check</div>
+                                <div class="step-time">30 seconds</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-info">
+                                <div class="step-name">Your Current Situation</div>
+                                <div class="step-time">2 minutes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-info">
+                                <div class="step-name">Find Resources</div>
+                                <div class="step-time">2 minutes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-info">
+                                <div class="step-name">Discover More Help</div>
+                                <div class="step-time">1 minute</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <div class="step-info">
+                                <div class="step-name">Connect & Confirm</div>
+                                <div class="step-time">30 seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <div class="trust-icon">🔒</div>
+                        <div class="trust-text">Your information is private and secure</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">⏰</div>
+                        <div class="trust-text">Available 24/7 - get help anytime</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">💯</div>
+                        <div class="trust-text">100% free - no charges, no catches</div>
+                    </div>
+                </div>
+
+                <button class="start-button" onclick="startJourney()">
+                    Let's Get Started →
+                </button>
+                <div class="time-estimate">
+                    ⏱️ Takes about 5 minutes
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Header (hidden initially) -->
+        <div class="progress-header" id="progressHeader">
+            <div class="progress-steps">
+                <div class="progress-step active" data-step="1">
+                    <div class="progress-step-circle">1</div>
+                    <div class="progress-step-label">Safety</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="progress-step-circle">2</div>
+                    <div class="progress-step-label">Situation</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="progress-step-circle">3</div>
+                    <div class="progress-step-label">Resources</div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="progress-step-circle">4</div>
+                    <div class="progress-step-label">Services</div>
+                </div>
+                <div class="progress-step" data-step="5">
+                    <div class="progress-step-circle">5</div>
+                    <div class="progress-step-label">Connect</div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
+        </div>
+
+        <!-- Chat Container (hidden initially) -->
+        <div class="chat-container" id="chatContainer"></div>
+
+        <!-- Input Container (hidden initially) -->
+        <div class="input-container" id="inputContainer">
+            <div class="input-mode-selector">
+                <button class="mode-button active" onclick="setInputMode('buttons')" id="btnModeButtons">
+                    🔘 Tap
+                </button>
+                <button class="mode-button" onclick="setInputMode('text')" id="btnModeText">
+                    ⌨️ Type
+                </button>
+                <button class="mode-button" onclick="setInputMode('voice')" id="btnModeVoice">
+                    🎤 Voice
+                </button>
+            </div>
+            
+            <div id="inputArea">
+                <div style="text-align: center; font-size: 14px; color: #999; padding: 12px;">
+                    👆 Tap options above to respond
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const state = {
+            currentStep: 1,
+            totalSteps: 5,
+            userProfile: {
+                age: null,
+                location: null,
+                livingWith: null,
+                durationWithFriend: null,
+                lgbtq: false
+            },
+            inputMode: 'buttons',
+            collectedData: {},
+            conversationContext: []
+        };
+
+        function init() {
+            updateTime();
+            setInterval(updateTime, 60000);
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            document.getElementById('timeDisplay').textContent = `${displayHours}:${minutes} ${ampm}`;
+        }
+
+        function startJourney() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('progressHeader').classList.add('show');
+            document.getElementById('chatContainer').classList.add('show');
+            document.getElementById('inputContainer').classList.add('show');
+            
+            setTimeout(() => {
+                addAIMessage("Hey there 👋 I'm Alex, and I'm here to help you find the support you need.");
+            }, 300);
+
+            setTimeout(() => {
+                addAIMessage("Before we get started, I want to make sure you're safe right now. Are you in a safe place?", [
+                    { label: "Yes, I'm safe", value: "safe_yes" },
+                    { label: "No, I need help now", value: "safe_no" },
+                    { label: "I'm not sure", value: "safe_unsure" }
+                ]);
+            }, 1500);
+        }
+
+        function updateProgressBar() {
+            const percent = (state.currentStep / state.totalSteps) * 100;
+            document.getElementById('progressBarFill').style.width = `${percent}%`;
+            
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum < state.currentStep) {
+                    step.classList.add('completed');
+                    step.querySelector('.progress-step-circle').textContent = '✓';
+                } else if (stepNum === state.currentStep) {
+                    step.classList.add('active');
+                    step.querySelector('.progress-step-circle').textContent = stepNum;
+                } else {
+                    step.querySelector('.progress-step-circle').textContent = stepNum;
+                }
+            });
+        }
+
+        function showGentleAcknowledgment(message) {
+            const acknowledgment = document.createElement('div');
+            acknowledgment.className = 'progress-acknowledgment';
+            acknowledgment.textContent = message;
+            
+            const lastMessage = document.querySelector('.message:last-child .message-content');
+            if (lastMessage) {
+                lastMessage.appendChild(acknowledgment);
+            }
+        }
+
+        function addAIMessage(text, options = null, extras = {}) {
+            const chatContainer = document.getElementById('chatContainer');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ai';
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar ai';
+            avatar.textContent = '🤖';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = text;
+            
+            messageContent.appendChild(bubble);
+            
+            if (options) {
+                const buttonOptions = document.createElement('div');
+                buttonOptions.className = 'button-options';
+                
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'option-button';
+                    button.textContent = option.label;
+                    button.onclick = () => handleResponse(option.label, option.value);
+                    buttonOptions.appendChild(button);
+                });
+                
+                messageContent.appendChild(buttonOptions);
+
+                // Add "tell me more" option if specified
+                if (extras.allowTellMore) {
+                    const tellMoreBtn = document.createElement('button');
+                    tellMoreBtn.className = 'option-button tell-more';
+                    tellMoreBtn.textContent = '💬 I\'d like to share more about this';
+                    tellMoreBtn.onclick = () => handleResponse('I\'d like to share more', 'tell_more_' + extras.context);
+                    buttonOptions.appendChild(tellMoreBtn);
+                }
+            }
+
+            if (extras.contextNote) {
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'context-note';
+                noteDiv.innerHTML = `
+                    <div class="context-note-title">
+                        <span>💡</span>
+                        <span>Why I'm asking</span>
+                    </div>
+                    <div>${extras.contextNote}</div>
+                `;
+                messageContent.appendChild(noteDiv);
+            }
+
+            if (extras.resources) {
+                extras.resources.forEach(resource => {
+                    const card = document.createElement('div');
+                    card.className = 'resource-card';
+                    card.innerHTML = `
+                        <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+                            <div style="font-size: 24px;">${resource.icon}</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; font-size: 16px; color: #333;">${resource.name}</div>
+                                <div style="font-size: 14px; color: #666; margin-top: 4px; white-space: pre-line;">${resource.details}</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="option-button" style="flex: 1; background: #667eea; color: white; justify-content: center;" onclick="alert('Opening directions...')">📍 Directions</button>
+                            <button class="option-button" style="flex: 1; background: #f0f4ff; justify-content: center;" onclick="alert('Calling shelter...')">📞 Call</button>
+                        </div>
+                    `;
+                    messageContent.appendChild(card);
+                });
+            }
+
+            if (extras.summary) {
+                const summaryDiv = document.createElement('div');
+                summaryDiv.className = 'smart-summary';
+                summaryDiv.innerHTML = `
+                    <div class="summary-title">
+                        <span>📋</span>
+                        <span>What We've Covered</span>
+                    </div>
+                    ${extras.summary.map(item => `
+                        <div class="summary-item">
+                            <span>•</span>
+                            <span>${item}</span>
+                        </div>
+                    `).join('')}
+                    ${extras.empathy ? `<div class="empathy-note">${extras.empathy}</div>` : ''}
+                `;
+                messageContent.appendChild(summaryDiv);
+            }
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatContainer.appendChild(messageDiv);
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const chatContainer = document.getElementById('chatContainer');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar user';
+            avatar.textContent = '👤';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = text;
+            
+            messageContent.appendChild(bubble);
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatContainer.appendChild(messageDiv);
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTyping() {
+            const chatContainer = document.getElementById('chatContainer');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="avatar ai">🤖</div>
+                <div class="message-content">
+                    <div class="message-bubble">
+                        <div class="typing-indicator">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatContainer.appendChild(typingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        async function handleResponse(label, value) {
+            addUserMessage(label);
+            showTyping();
+            
+            await sleep(1000);
+            hideTyping();
+            
+            if (value === 'safe_yes') {
+                state.collectedData.safety = 'safe';
+                showGentleAcknowledgment("Thank you for letting me know.");
+                
+                await sleep(800);
+                
+                state.currentStep = 2;
+                updateProgressBar();
+                
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                addAIMessage("I'd like to understand your situation a bit better. Where are you staying right now?", [
+                    { label: "With a friend", value: "staying_friend" },
+                    { label: "With family", value: "staying_family" },
+                    { label: "In my car", value: "staying_car" },
+                    { label: "On the street", value: "staying_street" },
+                    { label: "Other", value: "staying_other" }
+                ], { 
+                    contextNote: "Your living situation helps me understand what support might work best for you.",
+                    allowTellMore: true,
+                    context: 'living_situation'
+                });
+            } else if (value === 'safe_no') {
+                addAIMessage("I understand. I'm connecting you to crisis support right now.\n\n🆘 Call: 988\n📱 Text: HOME to 741741");
+            } else if (value === 'staying_friend') {
+                state.userProfile.livingWith = 'friend';
+                showGentleAcknowledgment("I appreciate you sharing that with me.");
+                
+                await sleep(1000);
+                showTyping();
+                await sleep(1200);
+                hideTyping();
+                
+                // Curious follow-up
+                addAIMessage("How long have you been staying with your friend?", [
+                    { label: "Less than a week", value: "duration_week" },
+                    { label: "1-2 weeks", value: "duration_two_weeks" },
+                    { label: "A few weeks", value: "duration_few_weeks" },
+                    { label: "A month or more", value: "duration_month_plus" }
+                ], {
+                    contextNote: "The length of time you've been there can affect which programs you qualify for. Some emergency housing programs are specifically for people in temporary situations.",
+                    allowTellMore: true,
+                    context: 'duration'
+                });
+            } else if (value === 'staying_car') {
+                state.userProfile.livingWith = 'car';
+                showGentleAcknowledgment("Thank you for trusting me with that.");
+                
+                await sleep(1000);
+                showTyping();
+                await sleep(1200);
+                hideTyping();
+                
+                addAIMessage("I understand. How long have you been in this situation?", [
+                    { label: "Just started", value: "duration_new" },
+                    { label: "A few days", value: "duration_days" },
+                    { label: "A week or two", value: "duration_weeks" },
+                    { label: "Longer", value: "duration_longer" }
+                ], {
+                    contextNote: "This helps me find the right type of support - whether you need emergency shelter tonight or longer-term housing help.",
+                    allowTellMore: true,
+                    context: 'car_duration'
+                });
+            } else if (value.startsWith('duration_')) {
+                const duration = value.replace('duration_', '');
+                state.userProfile.durationWithFriend = duration;
+                
+                if (duration === 'month_plus') {
+                    showGentleAcknowledgment("I see.");
+                    
+                    await sleep(1000);
+                    showTyping();
+                    await sleep(1500);
+                    hideTyping();
+                    
+                    addAIMessage("Since you've been staying with your friend for a while, I'm curious - is this arrangement working for you, or are you looking for something more stable?", [
+                        { label: "It's temporary, need my own place", value: "situation_temporary" },
+                        { label: "It's getting difficult", value: "situation_difficult" },
+                        { label: "Just need some support", value: "situation_support" }
+                    ], {
+                        contextNote: "Your answer helps me understand if emergency shelter or longer-term housing programs would be more helpful.",
+                        allowTellMore: true,
+                        context: 'stability'
+                    });
+                } else {
+                    showGentleAcknowledgment("Got it, thank you.");
+                    
+                    await sleep(800);
+                    proceedToLocation();
+                }
+            } else if (value.startsWith('situation_')) {
+                showGentleAcknowledgment("I understand. That makes sense.");
+                
+                await sleep(1000);
+                proceedToLocation();
+            } else if (value.startsWith('tell_more_')) {
+                const context = value.replace('tell_more_', '');
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                if (context === 'living_situation') {
+                    addAIMessage("I'm here to listen. What would you like me to know about where you're staying?");
+                    setInputMode('text');
+                } else if (context === 'duration') {
+                    addAIMessage("Of course. Tell me more about your situation with your friend - whatever feels important to share.");
+                    setInputMode('text');
+                } else if (context === 'stability') {
+                    addAIMessage("I'd like to hear more. What's on your mind about your current situation?");
+                    setInputMode('text');
+                }
+            } else if (value.startsWith('city_')) {
+                const city = value.replace('city_', '');
+                state.userProfile.location = city;
+                
+                showGentleAcknowledgment("Thank you.");
+                
+                await sleep(1000);
+                showTyping();
+                await sleep(1500);
+                hideTyping();
+                
+                state.currentStep = 3;
+                updateProgressBar();
+                
+                addAIMessage("Looking for available resources in " + city + "...");
+                
+                await sleep(2000);
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                addAIMessage("I found a few places that might work for you.", null, {
+                    resources: [
+                        {
+                            icon: "🏠",
+                            name: "SafeSpace Berkeley Youth Shelter",
+                            details: "• Ages 18-24\n• LGBTQ+ affirming\n• 3 beds available tonight\n• 2.3 miles away"
+                        },
+                        {
+                            icon: "🏠",
+                            name: "Bay Area Youth Housing",
+                            details: "• All ages welcome\n• 5 beds available\n• Can stay up to 90 days\n• 4.1 miles away"
+                        }
+                    ]
+                });
+                
+                await sleep(1500);
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                addAIMessage("Would you like me to let one of these shelters know you're coming?", [
+                    { label: "Yes, SafeSpace please", value: "notify_safespace" },
+                    { label: "Yes, Bay Area Housing", value: "notify_bay" },
+                    { label: "Not yet, just looking", value: "notify_no" }
+                ], {
+                    allowTellMore: true,
+                    context: 'shelter_choice'
+                });
+            } else if (value === 'notify_safespace') {
+                showGentleAcknowledgment("I'll take care of that for you.");
+                
+                await sleep(1500);
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                state.currentStep = 4;
+                updateProgressBar();
+                
+                addAIMessage("I've let SafeSpace know to expect you. They have your basic info so you won't need to explain everything again when you arrive.");
+                
+                await sleep(1500);
+                showTyping();
+                await sleep(1200);
+                hideTyping();
+                
+                addAIMessage("While we're talking, I noticed you might also qualify for some additional support. Would you like to hear about food assistance and other resources?", [
+                    { label: "Yes, tell me more", value: "services_yes" },
+                    { label: "Just shelter for now", value: "services_no" }
+                ]);
+            } else if (value === 'services_yes') {
+                showTyping();
+                await sleep(1200);
+                hideTyping();
+                
+                addAIMessage("Based on what you've shared, you may qualify for:", null, {
+                    summary: [
+                        "CalFresh (food stamps) - about $200-300/month for groceries",
+                        "Free bus pass - helps with getting around",
+                        "School enrollment support - if you're interested in continuing education",
+                        "Job training programs - when you're ready"
+                    ],
+                    empathy: "I can help you apply for any of these. We already have most of the information we need."
+                });
+                
+                await sleep(1500);
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                addAIMessage("Would you like me to start any of these applications?", [
+                    { label: "Yes, start CalFresh", value: "start_calfresh" },
+                    { label: "Tell me more first", value: "explain_services" },
+                    { label: "Not right now", value: "services_skip" }
+                ]);
+            } else if (value === 'start_calfresh') {
+                showGentleAcknowledgment("I'll get that started.");
+                
+                await sleep(1500);
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                state.currentStep = 5;
+                updateProgressBar();
+                
+                addAIMessage("Your CalFresh application is in progress. I've used the information you shared to fill most of it out.", null, {
+                    summary: [
+                        "SafeSpace bed reserved for tonight",
+                        "CalFresh application started",
+                        "You'll hear back about CalFresh in 2-3 days"
+                    ],
+                    empathy: "You can update any information or add more details whenever you're ready."
+                });
+                
+                await sleep(1500);
+                showTyping();
+                await sleep(1000);
+                hideTyping();
+                
+                addAIMessage("Is there anything else I can help you with before you head to SafeSpace?", [
+                    { label: "I think I'm all set", value: "done" },
+                    { label: "I have questions", value: "questions" }
+                ], {
+                    allowTellMore: true,
+                    context: 'final'
+                });
+            }
+        }
+
+        async function proceedToLocation() {
+            showTyping();
+            await sleep(1000);
+            hideTyping();
+            
+            state.currentStep = 3;
+            updateProgressBar();
+            
+            setInputMode('text');
+            addAIMessage("Which city are you in right now?");
+            showAutocomplete(['Berkeley', 'Oakland', 'San Francisco', 'San Jose', 'Sacramento']);
+        }
+
+        function showAutocomplete(cities) {
+            const inputArea = document.getElementById('inputArea');
+            const autocompleteDiv = document.createElement('div');
+            autocompleteDiv.className = 'smart-autocomplete show';
+            autocompleteDiv.id = 'autocomplete';
+            
+            cities.forEach(city => {
+                const item = document.createElement('div');
+                item.className = 'autocomplete-item';
+                item.innerHTML = `
+                    <span class="autocomplete-icon">📍</span>
+                    <span>${city}</span>
+                `;
+                item.onclick = () => {
+                    document.getElementById('autocomplete').remove();
+                    setInputMode('buttons');
+                    handleResponse(city, `city_${city}`);
+                };
+                autocompleteDiv.appendChild(item);
+            });
+            
+            inputArea.appendChild(autocompleteDiv);
+        }
+
+        function setInputMode(mode) {
+            state.inputMode = mode;
+            document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
+            
+            const inputArea = document.getElementById('inputArea');
+            
+            if (mode === 'text') {
+                document.getElementById('btnModeText').classList.add('active');
+                inputArea.innerHTML = `
+                    <div style="padding: 12px; text-align: center; color: #999; font-size: 14px;">
+                        Type your city or tap a suggestion ↓
+                    </div>
+                `;
+            } else {
+                document.getElementById('btnModeButtons').classList.add('active');
+                inputArea.innerHTML = `
+                    <div style="text-align: center; font-size: 14px; color: #999; padding: 12px;">
+                        👆 Tap options above to respond
+                    </div>
+                `;
+            }
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
