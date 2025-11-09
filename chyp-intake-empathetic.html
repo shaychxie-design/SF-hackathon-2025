@@ -60,6 +60,7 @@
             color: white;
             padding: 40px 24px 32px;
             text-align: center;
+            margin-bottom: 24px;
         }
 
         .welcome-icon {
@@ -81,8 +82,38 @@
         }
 
         .welcome-content {
-            padding: 24px;
+            padding: 0;
+            padding-bottom: 100px;
             flex: 1;
+            overflow-y: auto;
+        }
+
+        .what-we-do-section {
+            margin-bottom: 32px;
+            padding: 0 24px;
+        }
+
+        .journey-preview {
+            margin-bottom: 32px;
+            padding: 0 24px;
+        }
+
+        .trust-indicators {
+            background: #f0f4ff;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 0 24px 24px 24px;
+        }
+
+        .sticky-button-container {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 16px 24px;
+            border-top: 1px solid #e0e0e0;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
         }
 
         .what-we-do-section {
@@ -99,43 +130,27 @@
             gap: 8px;
         }
 
-        .benefit-card {
-            background: #f8f9ff;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
+        .benefit-list {
             display: flex;
+            flex-direction: column;
             gap: 12px;
-            align-items: flex-start;
-            border: 2px solid #e8ebff;
-            transition: all 0.2s;
         }
 
-        .benefit-card:hover {
-            border-color: #667eea;
-            transform: translateX(4px);
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .benefit-icon {
-            font-size: 24px;
+            font-size: 20px;
             flex-shrink: 0;
         }
 
-        .benefit-text {
-            flex: 1;
-        }
-
         .benefit-title {
-            font-weight: 600;
+            font-weight: 500;
             color: #333;
-            margin-bottom: 4px;
             font-size: 15px;
-        }
-
-        .benefit-description {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
         }
 
         .journey-preview {
@@ -152,15 +167,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            border: 2px solid #e0e0e0;
+            padding: 8px 0;
         }
 
         .step-number {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -168,7 +180,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             flex-shrink: 0;
         }
 
@@ -177,7 +189,7 @@
         }
 
         .step-name {
-            font-weight: 600;
+            font-weight: 500;
             color: #333;
             font-size: 14px;
         }
@@ -191,7 +203,7 @@
             background: #f0f4ff;
             border-radius: 12px;
             padding: 16px;
-            margin-bottom: 24px;
+            margin: 0 24px 24px 24px;
         }
 
         .trust-item {
@@ -697,6 +709,159 @@
             padding-top: 8px;
             border-top: 1px solid #e0e0e0;
         }
+
+        /* Save & Return Modal */
+        .save-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        }
+
+        .save-modal-overlay.show {
+            display: flex;
+        }
+
+        .save-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 32px 24px;
+            max-width: 340px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .save-modal-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .save-modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .save-modal-text {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .save-code-display {
+            background: #f0f4ff;
+            border: 2px dashed #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .save-code-label {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .save-code {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            letter-spacing: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .save-code-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-button-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-button-secondary {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Return Modal */
+        .return-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .return-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .return-input::placeholder {
+            color: #ccc;
+            letter-spacing: 2px;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: -8px;
+            margin-bottom: 16px;
+        }
     </style>
 </head>
 <body>
@@ -708,48 +873,38 @@
 
         <!-- Welcome Screen -->
         <div class="welcome-screen" id="welcomeScreen">
-            <div class="welcome-hero">
-                <div class="welcome-icon">🏠</div>
-                <div class="welcome-title">Find the Help You Need Tonight</div>
-                <div class="welcome-subtitle">Get connected to housing, food, and support in minutes</div>
-            </div>
-
             <div class="welcome-content">
+                <div class="welcome-hero">
+                    <div class="welcome-icon">🏠</div>
+                    <div class="welcome-title">Find the Help You Need Tonight</div>
+                    <div class="welcome-subtitle">Get connected to housing, food, and support in minutes</div>
+                </div>
+
                 <div class="what-we-do-section">
                     <div class="section-title">
                         <span>💙</span>
                         <span>What We'll Do Together</span>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🎯</div>
-                        <div class="benefit-text">
-                            <div class="benefit-title">Find You Resources Tonight</div>
-                            <div class="benefit-description">Real shelters with available beds, food programs, and more</div>
+                    <div class="benefit-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🎯</div>
+                            <div class="benefit-title">Find you resources tonight</div>
                         </div>
-                    </div>
 
-                    <div class="benefit-card">
-                        <div class="benefit-icon">💬</div>
-                        <div class="benefit-text">
-                            <div class="benefit-title">Simple Conversation</div>
-                            <div class="benefit-description">Answer at your own pace - skip anything you're not comfortable with</div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">💬</div>
+                            <div class="benefit-title">Simple conversation at your own pace</div>
                         </div>
-                    </div>
 
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📋</div>
-                        <div class="benefit-text">
-                            <div class="benefit-title">No Repeating Yourself</div>
-                            <div class="benefit-description">Share once, use everywhere - we'll fill out the forms for you</div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">📋</div>
+                            <div class="benefit-title">No repeating yourself</div>
                         </div>
-                    </div>
 
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🔒</div>
-                        <div class="benefit-text">
-                            <div class="benefit-title">You Control Your Info</div>
-                            <div class="benefit-description">See exactly what's shared and who can see it</div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🔒</div>
+                            <div class="benefit-title">You control your information</div>
                         </div>
                     </div>
                 </div>
@@ -757,28 +912,20 @@
                 <div class="journey-preview">
                     <div class="section-title">
                         <span>🗺️</span>
-                        <span>Your Journey (5 Steps)</span>
+                        <span>Your Journey (3 Steps)</span>
                     </div>
                     
                     <div class="steps-container">
                         <div class="step-item">
                             <div class="step-number">1</div>
                             <div class="step-info">
-                                <div class="step-name">Safety Check</div>
-                                <div class="step-time">30 seconds</div>
-                            </div>
-                        </div>
-                        
-                        <div class="step-item">
-                            <div class="step-number">2</div>
-                            <div class="step-info">
-                                <div class="step-name">Your Current Situation</div>
+                                <div class="step-name">Your Situation</div>
                                 <div class="step-time">2 minutes</div>
                             </div>
                         </div>
                         
                         <div class="step-item">
-                            <div class="step-number">3</div>
+                            <div class="step-number">2</div>
                             <div class="step-info">
                                 <div class="step-name">Find Resources</div>
                                 <div class="step-time">2 minutes</div>
@@ -786,18 +933,10 @@
                         </div>
                         
                         <div class="step-item">
-                            <div class="step-number">4</div>
+                            <div class="step-number">3</div>
                             <div class="step-info">
-                                <div class="step-name">Discover More Help</div>
+                                <div class="step-name">Get Connected</div>
                                 <div class="step-time">1 minute</div>
-                            </div>
-                        </div>
-                        
-                        <div class="step-item">
-                            <div class="step-number">5</div>
-                            <div class="step-info">
-                                <div class="step-name">Connect & Confirm</div>
-                                <div class="step-time">30 seconds</div>
                             </div>
                         </div>
                     </div>
@@ -817,7 +956,9 @@
                         <div class="trust-text">100% free - no charges, no catches</div>
                     </div>
                 </div>
+            </div>
 
+            <div class="sticky-button-container">
                 <button class="start-button" onclick="startJourney()">
                     Let's Get Started →
                 </button>
@@ -829,25 +970,23 @@
 
         <!-- Progress Header (hidden initially) -->
         <div class="progress-header" id="progressHeader">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <div style="font-size: 14px; font-weight: 600; color: #667eea;">Your Progress</div>
+                <button onclick="saveAndExit()" style="background: transparent; border: 2px solid #667eea; color: #667eea; padding: 6px 12px; border-radius: 16px; font-size: 13px; cursor: pointer; font-weight: 500;">
+                    💾 Save & Return Later
+                </button>
+            </div>
             <div class="progress-steps">
                 <div class="progress-step active" data-step="1">
                     <div class="progress-step-circle">1</div>
-                    <div class="progress-step-label">Safety</div>
+                    <div class="progress-step-label">Situation</div>
                 </div>
                 <div class="progress-step" data-step="2">
                     <div class="progress-step-circle">2</div>
-                    <div class="progress-step-label">Situation</div>
+                    <div class="progress-step-label">Resources</div>
                 </div>
                 <div class="progress-step" data-step="3">
                     <div class="progress-step-circle">3</div>
-                    <div class="progress-step-label">Resources</div>
-                </div>
-                <div class="progress-step" data-step="4">
-                    <div class="progress-step-circle">4</div>
-                    <div class="progress-step-label">Services</div>
-                </div>
-                <div class="progress-step" data-step="5">
-                    <div class="progress-step-circle">5</div>
                     <div class="progress-step-label">Connect</div>
                 </div>
             </div>
@@ -881,10 +1020,54 @@
         </div>
     </div>
 
+    <!-- Save & Return Later Modal -->
+    <div class="save-modal-overlay" id="saveModal">
+        <div class="save-modal">
+            <div class="save-modal-icon">💾</div>
+            <div class="save-modal-title">Your Progress is Saved</div>
+            <div class="save-modal-text">Write down this code. You'll need it to continue where you left off.</div>
+            
+            <div class="save-code-display">
+                <div class="save-code-label">Your Return Code</div>
+                <div class="save-code" id="saveCode">----</div>
+                <div class="save-code-hint">Write this down or take a screenshot</div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-button-primary" onclick="confirmSaveAndExit()">I've Saved My Code</button>
+                <button class="modal-button-secondary" onclick="closeSaveModal()">Keep Going</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Back Modal -->
+    <div class="save-modal-overlay" id="returnModal">
+        <div class="save-modal">
+            <div class="save-modal-icon">👋</div>
+            <div class="save-modal-title">Welcome Back!</div>
+            <div class="save-modal-text">Enter your code to pick up where you left off.</div>
+            
+            <input 
+                type="text" 
+                class="return-input" 
+                id="returnCodeInput" 
+                placeholder="XXXX"
+                maxlength="4"
+                oninput="this.value = this.value.toUpperCase()"
+            />
+            <div class="error-message" id="returnError" style="display: none;">Code not found. Please check and try again.</div>
+
+            <div class="modal-buttons">
+                <button class="modal-button-primary" onclick="restoreProgress()">Continue My Intake</button>
+                <button class="modal-button-secondary" onclick="startFresh()">Start Fresh Instead</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const state = {
             currentStep: 1,
-            totalSteps: 5,
+            totalSteps: 3,
             userProfile: {
                 age: null,
                 location: null,
@@ -897,9 +1080,120 @@
             conversationContext: []
         };
 
+        let messages = []; // Track all messages for save/restore
+
         function init() {
             updateTime();
             setInterval(updateTime, 60000);
+            
+            // Check if there's a saved session
+            checkForSavedSession();
+        }
+
+        function checkForSavedSession() {
+            const savedSessions = localStorage.getItem('chyp_sessions');
+            if (savedSessions && JSON.parse(savedSessions).length > 0) {
+                // Show return modal after a brief delay
+                setTimeout(() => {
+                    document.getElementById('returnModal').classList.add('show');
+                }, 500);
+            }
+        }
+
+        function generateSaveCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Excluding similar-looking characters
+            let code = '';
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        function saveAndExit() {
+            const code = generateSaveCode();
+            
+            // Save session data
+            const sessionData = {
+                code: code,
+                timestamp: new Date().toISOString(),
+                state: state,
+                messages: messages
+            };
+            
+            // Store in localStorage (in production, this would go to a secure backend)
+            let sessions = JSON.parse(localStorage.getItem('chyp_sessions') || '[]');
+            sessions.push(sessionData);
+            localStorage.setItem('chyp_sessions', JSON.stringify(sessions));
+            
+            // Show save modal
+            document.getElementById('saveCode').textContent = code;
+            document.getElementById('saveModal').classList.add('show');
+        }
+
+        function closeSaveModal() {
+            document.getElementById('saveModal').classList.remove('show');
+        }
+
+        function confirmSaveAndExit() {
+            document.getElementById('saveModal').classList.remove('show');
+            
+            // Show a gentle goodbye message
+            addAIMessage("Your progress is saved. Come back anytime - we'll be here when you're ready. Take care. 💙");
+            
+            // Disable input
+            document.getElementById('inputContainer').style.display = 'none';
+        }
+
+        function restoreProgress() {
+            const code = document.getElementById('returnCodeInput').value.toUpperCase();
+            const sessions = JSON.parse(localStorage.getItem('chyp_sessions') || '[]');
+            const session = sessions.find(s => s.code === code);
+            
+            if (session) {
+                // Restore state
+                Object.assign(state, session.state);
+                
+                // Hide return modal
+                document.getElementById('returnModal').classList.remove('show');
+                
+                // Hide welcome screen and show chat
+                document.getElementById('welcomeScreen').style.display = 'none';
+                document.getElementById('progressHeader').classList.add('show');
+                document.getElementById('chatContainer').classList.add('show');
+                document.getElementById('inputContainer').classList.add('show');
+                
+                // Restore messages
+                session.messages.forEach(msg => {
+                    if (msg.type === 'ai') {
+                        addAIMessage(msg.text, msg.options || null, msg.extras || {});
+                    } else {
+                        addUserMessage(msg.text);
+                    }
+                });
+                
+                // Update progress bar
+                updateProgressBar();
+                
+                // Welcome back message
+                setTimeout(() => {
+                    showTyping();
+                    setTimeout(() => {
+                        hideTyping();
+                        addAIMessage("Welcome back! I saved everything from our last conversation. Ready to continue?", [
+                            { label: "Yes, let's continue", value: "continue_saved" },
+                            { label: "Remind me where we were", value: "remind_progress" }
+                        ]);
+                    }, 1000);
+                }, 500);
+            } else {
+                // Show error
+                document.getElementById('returnError').style.display = 'block';
+            }
+        }
+
+        function startFresh() {
+            document.getElementById('returnModal').classList.remove('show');
+            // Welcome screen is already showing, so user can just click "Let's Get Started"
         }
 
         function updateTime() {
@@ -963,6 +1257,9 @@
 
         function addAIMessage(text, options = null, extras = {}) {
             const chatContainer = document.getElementById('chatContainer');
+            
+            // Track message for save/restore
+            messages.push({ type: 'ai', text, options, extras });
             
             const messageDiv = document.createElement('div');
             messageDiv.className = 'message ai';
@@ -1067,6 +1364,9 @@
         function addUserMessage(text) {
             const chatContainer = document.getElementById('chatContainer');
             
+            // Track message for save/restore
+            messages.push({ type: 'user', text });
+            
             const messageDiv = document.createElement('div');
             messageDiv.className = 'message user';
             
@@ -1128,8 +1428,7 @@
                 
                 await sleep(800);
                 
-                state.currentStep = 2;
-                updateProgressBar();
+                // Stay in step 1 - just continue conversation
                 
                 showTyping();
                 await sleep(1000);
@@ -1246,8 +1545,7 @@
                 await sleep(1500);
                 hideTyping();
                 
-                state.currentStep = 3;
-                updateProgressBar();
+                // Stay in step 2 while finding resources
                 
                 addAIMessage("Looking for available resources in " + city + "...");
                 
@@ -1292,7 +1590,7 @@
                 await sleep(1000);
                 hideTyping();
                 
-                state.currentStep = 4;
+                state.currentStep = 3;
                 updateProgressBar();
                 
                 addAIMessage("I've let SafeSpace know to expect you. They have your basic info so you won't need to explain everything again when you arrive.");
@@ -1339,9 +1637,6 @@
                 await sleep(1000);
                 hideTyping();
                 
-                state.currentStep = 5;
-                updateProgressBar();
-                
                 addAIMessage("Your CalFresh application is in progress. I've used the information you shared to fill most of it out.", null, {
                     summary: [
                         "SafeSpace bed reserved for tonight",
@@ -1367,12 +1662,12 @@
         }
 
         async function proceedToLocation() {
+            state.currentStep = 2;
+            updateProgressBar();
+            
             showTyping();
             await sleep(1000);
             hideTyping();
-            
-            state.currentStep = 3;
-            updateProgressBar();
             
             setInputMode('text');
             addAIMessage("Which city are you in right now?");
